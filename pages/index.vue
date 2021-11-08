@@ -45,7 +45,7 @@
                       </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                      <tr v-for="(user,idx) in users" :key="idx">
+                      <tr v-for="(user,idx) in users" :key="idx" @click="UserProfile">
                         <td class="px-6 py-4 whitespace-nowrap">
                          {{user.id}}
                         </td>
@@ -81,11 +81,13 @@
 
 <script>
 export default {
-  data(){
-    return{
 
+  methods:{
+    UserProfile(){
+      this.$router.push('/userProfile')
     }
   },
+
    async asyncData({ $axios }) {
       const users = await $axios.$get(`https://jsonplaceholder.typicode.com/users`)
       return { users }
